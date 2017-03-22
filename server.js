@@ -5,22 +5,42 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-
-var articleOne = {
-    title: 'Article One| saikumar',
-    heading: 'Article One',
-    date: 'sep 5, 2016',
-    content: `
-        <p>this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.
-                
-                </p>
-                <p>this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.
-                
-                </p>
-                <p>this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.
-                
-                </p>
-    `
+var articles = {
+     'articleOne' : {
+        title: 'Article One| saikumar',
+        heading: 'Article One',
+        date: 'sep 5, 2016',
+        content: `
+            <p>this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.this is my first article in my first web app.
+                    
+                    </p>
+                    
+        `
+},
+     'articleTwo' : {
+        title: 'Article Two| saikumar',
+        heading: 'Article Two',
+        date: 'sep 10, 2016',
+        content: `
+            <p>
+                this is my second article in my first web app..
+                    
+             </p>
+                    `
+        
+},
+     'articleThree': {
+        title: 'Article Three| saikumar',
+        heading: 'Article Three',
+        date: 'sep 15, 2016',
+        content: `
+            <p>
+                this is my third article in my first web app..
+                    
+             </p>
+                    `
+        
+}
 };
 function createTemplate(data){
     var title = data.title;
@@ -77,19 +97,11 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-app.get('/article_1',function(req,res){
-    res.send(createTemplate(articleOne));
-});
-
-app.get('/article_2',function(req, res)
-{
-   res.sendFile(path.join(__dirname,'ui','article_2.html')); 
-});
-
-app.get('/article_3',function(req,res)
-{
-   res.sendFile(path.join(__dirname,'ui','article_3.html')); 
-});
+app.get('/:articleName', function(req,res){
+    var articleName = req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
+}
+);
 
 var port = 8080; // Use 8080 for local development because you might already have apache running on 80
 app.listen(8080, function () {

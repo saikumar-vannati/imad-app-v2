@@ -1,15 +1,33 @@
 body {
     font-family: sans-serif;
-    background-color: lightblue;
+    background-color: lightgrey;
     margin-top: 75px;
+    background-image:url(/ui/wall.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
 }
-
+#fix{
+    position:fixed;
+    color:rgb(255,250,250);
+    top:20px;
+    left:20px;
+}
+#articles{
+    color:rgb(255,250,250);
+    font-weight:bold;
+}
+#newpage{
+    color:rgb(255,250,250);
+}
+a{
+    color:rgb(255,250,250);
+}
 .center {
     text-align: center;
 }
 
 .text-big {
-    font-size: 300%;
+    font-size: 200%;
 }
 
 .bold {
@@ -18,8 +36,4 @@ body {
 
 .img-medium {
     height: 200px;
-}
-
-.footer{
-    text-align: center;
 }

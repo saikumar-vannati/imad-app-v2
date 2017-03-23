@@ -1,14 +1,34 @@
+//counter
+var counter=document.getElementById('counter');
+counter.onclick=function(){
+   // count=count+1;
+   var request = new XMLHttpRequest();
+   request.onreadystatechange = function(){
+       if(request.readyState===XMLHttpRequest.DONE){
+           if(request.status===200){
+               var count=request.responseText;
+                var span=document.getElementById('count');
+                span.innerHTML=count.toString();           
+           }
+           
+       }
+   };
+   request.open('GET','http://kvineeth123.imad.hasura-app.io/counter');
+   request.send(null);
+};
+
+//login form
+
 function loadLoginForm () {
     var loginHtml = `
         <center><h3>Login to comment on articles</h3>
                 <h3>not having an account? then register</h3>
-       
-        <input type="text" id="username" placeholder = "username"/><br/>
-        <input type="password" id="password"  placeholder = "password"/>
+        <input type="text" id="username" placeholder="username"/><br/>
+        <input type="password" id="password" placeholder="password" />
         <br/><br/>
         <input type="submit" id="login_btn" value="Login" />
         <input type="submit" id="register_btn" value="Register" />
-       </center>
+        </center>
         `;
     document.getElementById('login_area').innerHTML = loginHtml;
     

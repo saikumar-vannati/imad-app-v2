@@ -2,6 +2,9 @@
 var counter=document.getElementById('counter');
 counter.onclick=function(){
    // count=count+1;
+
+   console.log("Testing ...")
+
    var request = new XMLHttpRequest();
    request.onreadystatechange = function(){
        if(request.readyState===XMLHttpRequest.DONE){
